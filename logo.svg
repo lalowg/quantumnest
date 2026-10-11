@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 64" width="600" height="128" role="img" aria-labelledby="t">
+  <title id="t">QuantumNest</title>
+  <rect width="300" height="64" fill="#070B1F"/>
+  <g transform="translate(8 8)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="24" cy="24" rx="21" ry="8.5" transform="rotate(-28 24 24)" stroke="#C8A96A" stroke-width="1"/>
+    <ellipse cx="24" cy="24" rx="21" ry="8.5" transform="rotate(28 24 24)" stroke="#C8A96A" stroke-width="1"/>
+    <path d="M24 7 L33 24 L24 41 L15 24 Z" stroke="#EAF2FF" stroke-width="1.4"/>
+    <path d="M15 24 L24 28.5 L33 24 M24 7 L24 28.5 M24 28.5 L24 41" stroke="#9FB8FF" stroke-width=".9"/>
+    <circle cx="42.2" cy="14.4" r="2.1" fill="#C8A96A" stroke="none"/>
+  </g>
+  <text x="70" y="40" font-family="Literata, Georgia, 'Times New Roman', serif" font-size="25" fill="#EAF2FF" letter-spacing=".3">Quantum<tspan font-style="italic" font-weight="300" fill="#E3CC98">Nest</tspan></text>
+</svg>

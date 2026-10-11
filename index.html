@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>QUANTUMNEST — Beyond the Possible</title>
+<meta name="description" content="QuantumNest explains quantum computing through one crystalline sculpture. Five plates (qubit, superposition, entanglement, interference, error correction) re-form before your eyes, with annotated figures and an interference bench you can operate.">
+<meta name="theme-color" content="#070B1F">
+<link rel="canonical" href="https://quantumnest.vercel.app/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="QUANTUMNEST">
+<meta property="og:title" content="QUANTUMNEST — Beyond the Possible">
+<meta property="og:description" content="A crystalline sculpture that re-forms for each idea in quantum computing, with annotated museum plates and a hands-on interference bench.">
+<meta property="og:url" content="https://quantumnest.vercel.app/">
+<meta property="og:image" content="https://quantumnest.vercel.app/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="QUANTUMNEST — Beyond the Possible">
+<meta name="twitter:description" content="Quantum computing, explained as a museum of five plates and one turning crystal.">
+<meta name="twitter:image" content="https://quantumnest.vercel.app/og.png">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@300;400;500&amp;family=Literata:ital,opsz,wght@0,7..72,300;0,7..72,400;1,7..72,300;1,7..72,400&amp;display=swap">
+<link rel="stylesheet" href="style.css">
+<script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.qnReady)document.documentElement.classList.remove('js');},3500);</script>
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js" } }
+</script>
+<script type="module" src="main.js"></script>
+</head>
+<body id="top">
+<a class="skip" href="#main">Skip to content</a>
+
+<svg class="defs" aria-hidden="true" focusable="false" width="0" height="0">
+  <defs>
+    <symbol id="qn-mark" viewBox="0 0 48 48">
+      <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <ellipse cx="24" cy="24" rx="21" ry="8.5" transform="rotate(-28 24 24)" stroke="var(--mark-gold, #C8A96A)" stroke-width="1"/>
+        <ellipse cx="24" cy="24" rx="21" ry="8.5" transform="rotate(28 24 24)" stroke="var(--mark-gold, #C8A96A)" stroke-width="1"/>
+        <path d="M24 7 L33 24 L24 41 L15 24 Z" stroke="currentColor" stroke-width="1.4"/>
+        <path d="M15 24 L24 28.5 L33 24 M24 7 L24 28.5 M24 28.5 L24 41" stroke="currentColor" stroke-width=".9" opacity=".65"/>
+      </g>
+      <circle cx="42.2" cy="14.4" r="2.1" fill="var(--mark-gold, #C8A96A)"/>
+    </symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-prev" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-next" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-turn-l" viewBox="0 0 24 24"><path d="M19 13a7 4 0 1 1-6-3.95" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M10 6l3 3-3 3" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-turn-r" viewBox="0 0 24 24"><path d="M5 13a7 4 0 1 0 6-3.95" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M14 6l-3 3 3 3" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path d="M9 6v12M15 6v12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10-6.5z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+
+<header class="site-header" id="site-header">
+  <a class="brand" href="#top" aria-label="QuantumNest, back to the top">
+    <svg class="brand__mark" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><use href="#qn-mark"/></svg>
+    <span class="brand__word">Quantum<span>Nest</span></span>
+  </a>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">
+    <span class="menu-btn__orb" aria-hidden="true"></span><span class="menu-btn__label">Plates</span>
+  </button>
+  <nav class="site-nav" id="site-nav" aria-label="Plates">
+    <ol>
+      <li><a href="#plate-i"><span class="site-nav__no">I</span>Sculpture</a></li>
+      <li><a href="#instrument"><span class="site-nav__no">II</span>Bench</a></li>
+      <li><a href="#nest"><span class="site-nav__no">III</span>The nest</a></li>
+      <li><a href="#history"><span class="site-nav__no">IV</span>History</a></li>
+      <li><a href="#applications"><span class="site-nav__no">V</span>Applications</a></li>
+      <li class="site-nav__cta"><a href="#viewing"><span class="site-nav__no">VI</span>Request a viewing</a></li>
+    </ol>
+  </nav>
+</header>
+
+<p class="illus-chip" aria-hidden="true"><span class="illus-chip__dot"></span>Illustrative visualisation — not a quantum simulation</p>
+
+<main id="main" tabindex="-1">
+
+<!-- ============ PLATE I · THE SCULPTURE ============ -->
+<section id="plate-i" class="hero" aria-labelledby="hero-title" data-concept="0">
+  <div class="hero__stage" id="stage">
+    <canvas class="hero__canvas" id="sculpture" role="img" aria-label="A turning sculpture of glass-like crystals and gold orbits. It re-forms to illustrate the selected plate."></canvas>
+    <svg class="hero__fallback" id="fallback" viewBox="0 0 600 600" aria-hidden="true" focusable="false">
+      <defs>
+        <radialGradient id="fb-core" cx="50%" cy="44%" r="52%">
+          <stop offset="0" stop-color="#9FB8FF" stop-opacity=".34"/>
+          <stop offset=".55" stop-color="#9FB8FF" stop-opacity=".08"/>
+          <stop offset="1" stop-color="#9FB8FF" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="fb-facet-a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EAF2FF" stop-opacity=".5"/><stop offset="1" stop-color="#9FB8FF" stop-opacity=".05"/></linearGradient>
+        <linearGradient id="fb-facet-b" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9FB8FF" stop-opacity=".32"/><stop offset="1" stop-color="#122050" stop-opacity=".1"/></linearGradient>
+        <pattern id="fb-hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(32)"><path d="M0 0V6" stroke="#9FB8FF" stroke-width=".6" opacity=".35"/></pattern>
+      </defs>
+      <circle cx="300" cy="290" r="250" fill="url(#fb-core)"/>
+      <g class="fb-orbits" fill="none" stroke="#C8A96A" stroke-width=".9">
+        <ellipse cx="300" cy="290" rx="236" ry="74" transform="rotate(-24 300 290)" opacity=".6"/>
+        <ellipse cx="300" cy="290" rx="236" ry="74" transform="rotate(24 300 290)" opacity=".45"/>
+        <ellipse cx="300" cy="290" rx="214" ry="214" opacity=".22"/>
+      </g>
+      <g class="fb-crystal" stroke="#EAF2FF" stroke-width="1" stroke-linejoin="round">
+        <path d="M300 90 L392 290 L300 470 L208 290 Z" fill="url(#fb-facet-b)"/>
+        <path d="M300 90 L392 290 L300 330 Z" fill="url(#fb-facet-a)"/>
+        <path d="M300 90 L208 290 L300 330 Z" fill="url(#fb-hatch)"/>
+        <path d="M208 290 L300 330 L300 470 Z" fill="url(#fb-hatch)" opacity=".7"/>
+        <path d="M392 290 L300 330 L300 470" fill="none" opacity=".7"/>
+      </g>
+      <g fill="#EAF2FF">
+        <circle cx="300" cy="90" r="3"/><circle cx="300" cy="470" r="3"/>
+        <circle cx="511" cy="196" r="4" fill="#C8A96A"/>
+      </g>
+      <g fill="none" stroke="#C8A96A" stroke-width=".8" opacity=".5">
+        <ellipse cx="300" cy="548" rx="120" ry="16"/>
+        <path d="M180 548 h-14 M420 548 h14"/>
+      </g>
+    </svg>
+    <svg class="annot" id="annot" aria-hidden="true" focusable="false"></svg>
+  </div>
+
+  <div class="hero__frame" aria-hidden="true"><i class="tk tk--tl"></i><i class="tk tk--tr"></i><i class="tk tk--bl"></i><i class="tk tk--br"></i></div>
+  <p class="hero__cat" aria-hidden="true">Plate I &nbsp;·&nbsp; Cat. QN–001 &nbsp;·&nbsp; Crystal, light &amp; conjecture</p>
+
+  <div class="hero__intro">
+    <p class="eyebrow">QuantumNest · Quantum computing studio</p>
+    <h1 id="hero-title">Beyond the <em>possible.</em></h1>
+    <p class="hero__lede">We build processors that hold information in states with no everyday equivalent. This sculpture is how we explain them: one crystal field, five ideas. Choose a plate and watch it re-form.</p>
+    <p class="hero__ctas">
+      <a class="btn" href="#viewing">Request a private viewing <svg aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+      <a class="link-quiet" href="#instrument">Operate the interference bench</a>
+    </p>
+    <p class="hero__illus">Illustrative visualisation — not a quantum simulation.</p>
+  </div>
+
+  <ol class="callouts" id="callouts" aria-label="Figure annotations">
+    <li><span class="callouts__key">a</span><p><b>|0⟩</b> The north pole: the classical zero.</p></li>
+    <li><span class="callouts__key">b</span><p><b>|ψ⟩</b> The state vector. Any point on the sphere is a valid state.</p></li>
+    <li><span class="callouts__key">c</span><p><b>|1⟩</b> The south pole: the classical one.</p></li>
+  </ol>
+
+  <div class="explorer">
+    <div class="explorer__tabs" role="tablist" aria-label="Sculpture plates">
+      <button class="ptab" role="tab" id="ptab-0" aria-selected="true" aria-controls="plate-panel" tabindex="0" data-i="0"><span class="ptab__no">I</span><span class="ptab__name">Qubit</span></button>
+      <button class="ptab" role="tab" id="ptab-1" aria-selected="false" aria-controls="plate-panel" tabindex="-1" data-i="1"><span class="ptab__no">II</span><span class="ptab__name">Superposition</span></button>
+      <button class="ptab" role="tab" id="ptab-2" aria-selected="false" aria-controls="plate-panel" tabindex="-1" data-i="2"><span class="ptab__no">III</span><span class="ptab__name">Entanglement</span></button>
+      <button class="ptab" role="tab" id="ptab-3" aria-selected="false" aria-controls="plate-panel" tabindex="-1" data-i="3"><span class="ptab__no">IV</span><span class="ptab__name">Interference</span></button>
+      <button class="ptab" role="tab" id="ptab-4" aria-selected="false" aria-controls="plate-panel" tabindex="-1" data-i="4"><span class="ptab__no">V</span><span class="ptab__name">Error correction</span></button>
+      <span class="explorer__rail" aria-hidden="true"></span>
+    </div>
+    <div class="explorer__panel" id="plate-panel" role="tabpanel" aria-labelledby="ptab-0">
+      <figure class="explorer__fig">
+        <svg id="mini-fig" class="mini-fig" viewBox="0 0 240 150" aria-hidden="true" focusable="false"></svg>
+        <figcaption id="mini-cap">Fig. 1 — The Bloch sphere. Every pure qubit state is a point on its surface.</figcaption>
+      </figure>
+      <div class="explorer__text">
+        <h2 class="explorer__title" id="plate-title">A bit that can point <em>anywhere</em></h2>
+        <p class="explorer__body" id="plate-body">A classical bit is a switch: 0 or 1. A qubit is described by a direction. Its poles are the familiar 0 and 1; every other point on the sphere is a blend of the two, with a phase that says how the blend is turned.</p>
+      </div>
+      <div class="explorer__ctl" role="group" aria-label="Sculpture controls">
+        <button class="icon-btn" type="button" id="ctl-prev" aria-label="Previous plate"><svg aria-hidden="true" focusable="false"><use href="#i-prev"/></svg></button>
+        <button class="icon-btn" type="button" id="ctl-next" aria-label="Next plate"><svg aria-hidden="true" focusable="false"><use href="#i-next"/></svg></button>
+        <span class="explorer__sep" aria-hidden="true"></span>
+        <button class="icon-btn" type="button" id="ctl-turn-l" aria-label="Turn the sculpture left"><svg aria-hidden="true" focusable="false"><use href="#i-turn-l"/></svg></button>
+        <button class="icon-btn" type="button" id="ctl-turn-r" aria-label="Turn the sculpture right"><svg aria-hidden="true" focusable="false"><use href="#i-turn-r"/></svg></button>
+        <button class="icon-btn" type="button" id="ctl-pause" aria-pressed="false" aria-label="Pause the turning"><svg aria-hidden="true" focusable="false"><use href="#i-pause"/></svg></button>
+        <p class="explorer__hint" id="drag-hint">Drag the sculpture to turn it</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PLATE II · THE INTERFERENCE BENCH ============ -->
+<section id="instrument" class="plate plate--bench" aria-labelledby="bench-title">
+  <header class="plate__head">
+    <p class="plate__no"><span>Plate II</span> The interference bench</p>
+    <h2 id="bench-title" class="observe">Send particles one at a time. <em>Watch stripes appear.</em></h2>
+  </header>
+  <div class="bench">
+    <figure class="bench__fig">
+      <svg class="bench__schematic" viewBox="0 0 640 112" aria-hidden="true" focusable="false">
+        <g fill="none" stroke-linecap="round">
+          <circle cx="40" cy="48" r="9" stroke="#C8A96A" stroke-width="1"/>
+          <circle cx="40" cy="48" r="2.5" fill="#C8A96A" stroke="none"/>
+          <path class="dr" pathLength="1" d="M60 48 C120 48 150 34 210 34 M60 48 C120 48 150 62 210 62" stroke="#9FB8FF" stroke-width=".9" opacity=".7"/>
+          <path d="M210 6 V28 M210 40 V56 M210 68 V90" stroke="#EAF2FF" stroke-width="2"/>
+          <g class="bench__waves" stroke="#9FB8FF" stroke-width=".8" opacity=".55">
+            <path class="dr" pathLength="1" d="M236 22 A20 20 0 0 1 236 46"/><path class="dr" pathLength="1" d="M262 12 A40 40 0 0 1 262 56"/><path class="dr" pathLength="1" d="M290 4 A62 62 0 0 1 290 64"/>
+            <path class="dr" pathLength="1" d="M236 50 A20 20 0 0 1 236 74"/><path class="dr" pathLength="1" d="M262 40 A40 40 0 0 1 262 84"/><path class="dr" pathLength="1" d="M290 32 A62 62 0 0 1 290 92"/>
+          </g>
+          <g class="bench__eye" stroke="#C8A96A" stroke-width="1"><path d="M186 14 q10 -8 20 0 q-10 8 -20 0z"/><circle cx="196" cy="14" r="2" fill="#C8A96A"/></g>
+          <path d="M600 6 V90" stroke="#EAF2FF" stroke-width="1.2" opacity=".8"/>
+          <path class="dr" pathLength="1" d="M340 48 H588" stroke="#C8A96A" stroke-width=".7" stroke-dasharray="2 5" opacity=".6"/>
+        </g>
+        <g class="bench__labels" fill="#9FB8FF" font-size="10">
+          <text x="24" y="84">source</text><text x="192" y="104">slits</text><text x="566" y="104">screen</text>
+        </g>
+      </svg>
+      <div class="bench__screen">
+        <canvas id="bench-canvas" role="img" aria-label="Detector screen showing particle arrivals, with a tally of arrivals below it"></canvas>
+        <p class="bench__empty" id="bench-empty">The screen is empty. Fire a particle to begin.</p>
+      </div>
+      <figcaption>
+        <span>Fig. 6 — Arrivals on the detector screen (top) and their running tally (bottom). The gold hairline is the predicted pattern.</span>
+        <span class="illus">Illustrative visualisation: arrivals are drawn from a textbook formula, not simulated physics.</span>
+      </figcaption>
+    </figure>
+
+    <div class="bench__panel">
+      <p class="bench__lede">Each particle lands as a single dot, at a place no one can predict. Only together do the dots draw stripes, the signature of amplitude interfering with itself. Switch on the which-path detector and the stripes are gone.</p>
+
+      <dl class="bench__readout">
+        <div><dt>Arrivals</dt><dd id="bench-hits">0</dd></div>
+        <div><dt>Stripes</dt><dd id="bench-vis">Expected</dd></div>
+        <div><dt>Spacing</dt><dd id="bench-spacing">—</dd></div>
+      </dl>
+
+      <div class="range">
+        <label for="r-sep">Slit separation</label>
+        <output id="o-sep" for="r-sep">5.0</output>
+        <input type="range" id="r-sep" min="2" max="8" step="0.1" value="5">
+      </div>
+      <div class="range">
+        <label for="r-lam">Wavelength</label>
+        <output id="o-lam" for="r-lam">0.70</output>
+        <input type="range" id="r-lam" min="0.4" max="1" step="0.01" value="0.7">
+      </div>
+      <div class="range">
+        <label for="r-phase">Phase shift on one path</label>
+        <output id="o-phase" for="r-phase">0°</output>
+        <input type="range" id="r-phase" min="0" max="360" step="1" value="0">
+      </div>
+      <p class="bench__units">Units are arbitrary. Changing a setting clears the screen.</p>
+
+      <div class="switch-row">
+        <button class="switch" type="button" role="switch" aria-checked="false" id="detector"><span class="switch__track" aria-hidden="true"><span class="switch__thumb"></span></span>Which-path detector</button>
+        <button class="switch" type="button" role="switch" aria-checked="true" id="prediction"><span class="switch__track" aria-hidden="true"><span class="switch__thumb"></span></span>Show prediction</button>
+      </div>
+
+      <div class="bench__fire" role="group" aria-label="Fire particles">
+        <button class="btn btn--ghost" type="button" id="fire-one">Fire one</button>
+        <button class="btn btn--ghost" type="button" id="fire-many">Fire 500</button>
+        <button class="btn" type="button" id="fire-stream" aria-pressed="false"><span class="stream-label">Start stream</span></button>
+        <button class="link-quiet" type="button" id="fire-clear">Clear screen</button>
+      </div>
+      <p class="bench__note" id="bench-note" aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PLATE III · ANATOMY OF A NEST ============ -->
+<section id="nest" class="plate plate--nest" aria-labelledby="nest-title">
+  <div class="nest">
+    <div class="nest__sticky">
+      <figure class="nest__fig">
+        <div class="nest__drawing">
+<svg id="nest-svg" class="nest-svg" viewBox="0 0 420 760" aria-hidden="true" focusable="false">
+<defs>
+<linearGradient id="nest-plate" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9FB8FF" stop-opacity=".05"/><stop offset=".45" stop-color="#EAF2FF" stop-opacity=".22"/><stop offset="1" stop-color="#9FB8FF" stop-opacity=".04"/></linearGradient>
+<linearGradient id="nest-gold" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#C8A96A" stop-opacity=".12"/><stop offset=".45" stop-color="#E6CF9C" stop-opacity=".55"/><stop offset="1" stop-color="#C8A96A" stop-opacity=".1"/></linearGradient>
+<radialGradient id="nest-chip-glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#9FB8FF" stop-opacity=".5"/><stop offset="1" stop-color="#9FB8FF" stop-opacity="0"/></radialGradient>
+</defs>
+<g class="nest-shields" fill="none" stroke="#9FB8FF" stroke-width=".8" stroke-dasharray="3 5">
+<path class="dr" pathLength="1" d="M70 168 V732 Q70 746 84 746 H336 Q350 746 350 732 V168"/>
+<path class="dr" pathLength="1" d="M88 284 V724 Q88 736 100 736 H320 Q332 736 332 724 V284"/>
+</g>
+<g class="nest-rods" fill="none" stroke="#EAF2FF" stroke-width="1.1" opacity=".55"><path class="dr" pathLength="1" d="M92 56 V160 M328 56 V160 M108 170 V276 M312 170 V276 M124 286 V392 M296 286 V392 M136 402 V500 M284 402 V500 M148 510 V598 M272 510 V598"/></g>
+<g class="nest-coax" fill="none" stroke="#C8A96A" stroke-width="1" stroke-linecap="round"><path class="dr" pathLength="1" d="M176 12 V38 M176 60 C176 95 169 87 169 105 S176 115 176 150 M176 174 C176 210 169 202 169 220 S176 230 176 266 M176 290 C176 326 169 318 169 336 S176 346 176 382 M176 406 C176 438 169 430 169 448 S176 458 176 490 M176 514 C176 541 169 533 169 551 S176 561 176 588 M176 610 V632"/><path class="dr" pathLength="1" d="M198 12 V38 M198 60 C198 95 205 87 205 105 S198 115 198 150 M198 174 C198 210 205 202 205 220 S198 230 198 266 M198 290 C198 326 205 318 205 336 S198 346 198 382 M198 406 C198 438 205 430 205 448 S198 458 198 490 M198 514 C198 541 205 533 205 551 S198 561 198 588 M198 610 V632"/><path class="dr" pathLength="1" d="M222 12 V38 M222 60 C222 95 215 87 215 105 S222 115 222 150 M222 174 C222 210 215 202 215 220 S222 230 222 266 M222 290 C222 326 215 318 215 336 S222 346 222 382 M222 406 C222 438 215 430 215 448 S222 458 222 490 M222 514 C222 541 215 533 215 551 S222 561 222 588 M222 610 V632"/><path class="dr" pathLength="1" d="M244 12 V38 M244 60 C244 95 251 87 251 105 S244 115 244 150 M244 174 C244 210 251 202 251 220 S244 230 244 266 M244 290 C244 326 251 318 251 336 S244 346 244 382 M244 406 C244 438 251 430 251 448 S244 458 244 490 M244 514 C244 541 251 533 251 551 S244 561 244 588 M244 610 V632"/></g>
+<g class="nest-att" fill="#070B1F" stroke="#C8A96A" stroke-width=".9"><rect x="172.5" y="60" width="7" height="11" rx="1.5"/><rect x="172.5" y="174" width="7" height="11" rx="1.5"/><rect x="172.5" y="290" width="7" height="11" rx="1.5"/><rect x="172.5" y="406" width="7" height="11" rx="1.5"/><rect x="172.5" y="514" width="7" height="11" rx="1.5"/><rect x="194.5" y="60" width="7" height="11" rx="1.5"/><rect x="194.5" y="174" width="7" height="11" rx="1.5"/><rect x="194.5" y="290" width="7" height="11" rx="1.5"/><rect x="194.5" y="406" width="7" height="11" rx="1.5"/><rect x="194.5" y="514" width="7" height="11" rx="1.5"/><rect x="218.5" y="60" width="7" height="11" rx="1.5"/><rect x="218.5" y="174" width="7" height="11" rx="1.5"/><rect x="218.5" y="290" width="7" height="11" rx="1.5"/><rect x="218.5" y="406" width="7" height="11" rx="1.5"/><rect x="218.5" y="514" width="7" height="11" rx="1.5"/><rect x="240.5" y="60" width="7" height="11" rx="1.5"/><rect x="240.5" y="174" width="7" height="11" rx="1.5"/><rect x="240.5" y="290" width="7" height="11" rx="1.5"/><rect x="240.5" y="406" width="7" height="11" rx="1.5"/><rect x="240.5" y="514" width="7" height="11" rx="1.5"/></g>
+<g class="nest-coil" fill="none" stroke="#9FB8FF" stroke-width=".9" opacity=".7"><path class="dr" pathLength="1" d="M150 406 L136 414 L164 422 L136 430 L164 438 L136 446 L164 454 L136 462 L164 470 L136 478 L164 486 L136 494 L164 502 L136 510 L164 518 L136 526 L164 534 L136 542 L164 550 L136 558 L164 566 L136 574 L164 582"/></g>
+<g class="nest-stage" data-stage="0">
+<path class="nest-stage__side" d="M60 46 v9 a150 9 0 0 0 300 0 v-9"/>
+<ellipse class="nest-stage__top" cx="210" cy="46" rx="150" ry="9"/>
+<path class="nest-stage__lead" d="M54 50 H54"/>
+<text class="nest-stage__t" x="6" y="54">300 K</text>
+</g>
+<g class="nest-stage" data-stage="1">
+<path class="nest-stage__side" d="M82 160 v9 a128 9 0 0 0 256 0 v-9"/>
+<ellipse class="nest-stage__top" cx="210" cy="160" rx="128" ry="9"/>
+<path class="nest-stage__lead" d="M54 164 H76"/>
+<text class="nest-stage__t" x="6" y="168">50 K</text>
+</g>
+<g class="nest-stage" data-stage="2">
+<path class="nest-stage__side" d="M98 276 v9 a112 9 0 0 0 224 0 v-9"/>
+<ellipse class="nest-stage__top" cx="210" cy="276" rx="112" ry="9"/>
+<path class="nest-stage__lead" d="M54 280 H92"/>
+<text class="nest-stage__t" x="6" y="284">4 K</text>
+</g>
+<g class="nest-stage" data-stage="3">
+<path class="nest-stage__side" d="M114 392 v9 a96 9 0 0 0 192 0 v-9"/>
+<ellipse class="nest-stage__top" cx="210" cy="392" rx="96" ry="9"/>
+<path class="nest-stage__lead" d="M54 396 H108"/>
+<text class="nest-stage__t" x="6" y="400">0.8 K</text>
+</g>
+<g class="nest-stage" data-stage="4">
+<path class="nest-stage__side" d="M126 500 v9 a84 9 0 0 0 168 0 v-9"/>
+<ellipse class="nest-stage__top" cx="210" cy="500" rx="84" ry="9"/>
+<path class="nest-stage__lead" d="M54 504 H120"/>
+<text class="nest-stage__t" x="6" y="508">0.1 K</text>
+</g>
+<g class="nest-stage" data-stage="5">
+<path class="nest-stage__side" d="M138 598 v9 a72 9 0 0 0 144 0 v-9"/>
+<ellipse class="nest-stage__top" cx="210" cy="598" rx="72" ry="9"/>
+<path class="nest-stage__lead" d="M54 602 H132"/>
+<text class="nest-stage__t" x="6" y="606">0.01 K</text>
+</g>
+<g class="nest-stage nest-proc" data-stage="6">
+<circle cx="210" cy="676" r="58" fill="url(#nest-chip-glow)" class="nest-proc__glow"/>
+<path class="nest-stage__side" d="M166 612 V708 Q166 724 182 724 H238 Q254 724 254 708 V612"/>
+<rect class="nest-chip" x="193" y="659" width="34" height="34" rx="2"/>
+<path class="nest-chip__grid" d="M193 670.3 H227 M193 681.6 H227 M204.3 659 V693 M215.7 659 V693"/>
+<circle class="nest-qubit" cx="198.7" cy="664.7" r="2"/><circle class="nest-qubit" cx="210" cy="664.7" r="2"/><circle class="nest-qubit" cx="221.3" cy="664.7" r="2"/><circle class="nest-qubit" cx="198.7" cy="676" r="2"/><circle class="nest-qubit" cx="210" cy="676" r="2"/><circle class="nest-qubit" cx="221.3" cy="676" r="2"/><circle class="nest-qubit" cx="198.7" cy="687.3" r="2"/><circle class="nest-qubit" cx="210" cy="687.3" r="2"/><circle class="nest-qubit" cx="221.3" cy="687.3" r="2"/>
+<path class="nest-stage__lead" d="M54 680 H160"/>
+<text class="nest-stage__t" x="6" y="684">chip</text>
+</g>
+</svg>
+        </div>
+        <div class="nest__thermo" aria-hidden="true">
+          <span class="nest__temp"><span id="nest-temp">300</span><span class="nest__unit" id="nest-unit">K</span></span>
+          <span class="nest__scale"><i id="nest-needle"></i></span>
+          <span class="nest__stage" id="nest-label">Room-temperature flange</span>
+        </div>
+        <figcaption>Fig. 7 — Illustrative architecture of a generic dilution refrigerator. Temperatures are typical orders of magnitude, not a QuantumNest specification.</figcaption>
+      </figure>
+    </div>
+
+    <div class="nest__story">
+      <header class="plate__head">
+        <p class="plate__no"><span>Plate III</span> Anatomy of a nest</p>
+        <h2 id="nest-title" class="observe">A hundredth of a degree <em>above absolute zero.</em></h2>
+        <p class="plate__intro">A superconducting processor only behaves quantum-mechanically when it is colder than deep space. The nest is the column that gets it there: a hanging stack of plates, each one colder than the plate above.</p>
+      </header>
+      <ol class="stages" id="stages">
+        <li class="stage" data-stage="0" data-temp="300">
+          <p class="stage__temp">≈ 300 K</p>
+          <h3>Room-temperature flange</h3>
+          <p>Where the outside world ends. Pumps, control electronics and every signal line enter here, and every one of them brings heat with it.</p>
+        </li>
+        <li class="stage" data-stage="1" data-temp="50">
+          <p class="stage__temp">≈ 50 K</p>
+          <h3>First stage</h3>
+          <p>A pulse-tube cooler takes the first large bite out of the heat. Polished radiation shields wrap everything below, so the colder plates never see a warm surface.</p>
+        </li>
+        <li class="stage" data-stage="2" data-temp="4">
+          <p class="stage__temp">≈ 4 K</p>
+          <h3>Second stage</h3>
+          <p>Cold enough to liquefy helium. Attenuators on the signal lines begin quietening the thermal noise that travels down from the warm electronics.</p>
+        </li>
+        <li class="stage" data-stage="3" data-temp="0.8">
+          <p class="stage__temp">≈ 0.8 K</p>
+          <h3>The still</h3>
+          <p>The dilution cycle begins. Helium-3 is distilled out of a mixture of helium-3 and helium-4, and every molecule that leaves carries a little heat away.</p>
+        </li>
+        <li class="stage" data-stage="4" data-temp="0.1">
+          <p class="stage__temp">≈ 0.1 K</p>
+          <h3>Cold plate</h3>
+          <p>A buffer between the still and the coldest stage. Heat exchangers coil down the column, so returning helium arrives already chilled.</p>
+        </li>
+        <li class="stage" data-stage="5" data-temp="0.01">
+          <p class="stage__temp">≈ 0.01 K</p>
+          <h3>Mixing chamber &amp; processor</h3>
+          <p>The nest itself. Here the processor sits in magnetic shielding, roughly two hundred and seventy times colder than the 2.7 K glow of deep space.</p>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PLATE IV · HISTORY ============ -->
+<section id="history" class="plate plate--history" aria-labelledby="history-title">
+  <div class="track" id="track">
+    <div class="track__pin">
+      <header class="track__head">
+        <div>
+          <p class="plate__no"><span>Plate IV</span> A brief history of the possible</p>
+          <h2 id="history-title" class="observe">Four decades of <em>thinking in amplitudes.</em></h2>
+        </div>
+        <div class="track__ctl">
+          <span class="track__progress" aria-hidden="true"><i id="track-bar"></i></span>
+          <button class="icon-btn" type="button" id="track-prev" aria-label="Earlier entries" aria-controls="track-viewport"><svg aria-hidden="true" focusable="false"><use href="#i-prev"/></svg></button>
+          <button class="icon-btn" type="button" id="track-next" aria-label="Later entries" aria-controls="track-viewport"><svg aria-hidden="true" focusable="false"><use href="#i-next"/></svg></button>
+        </div>
+      </header>
+      <div class="track__viewport" id="track-viewport" tabindex="0" role="region" aria-label="Timeline of quantum computing, scrolls sideways">
+        <ol class="track__list" id="track-list">
+          <li class="entry">
+            <p class="entry__year">1980</p>
+            <svg class="entry__glyph" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1"><path class="dr" pathLength="1" d="M4 26h56v12H4z M16 26v12 M28 26v12 M40 26v12 M52 26v12"/><path class="dr" pathLength="1" d="M34 14l-6 8-6-8z" stroke="var(--gold)"/></g></svg>
+            <h3>A computer made of quantum parts</h3>
+            <p>Paul Benioff describes a Turing machine whose every step is a quantum-mechanical process, the first serious model of a quantum computer.</p>
+          </li>
+          <li class="entry">
+            <p class="entry__year">1981</p>
+            <svg class="entry__glyph" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1"><ellipse class="dr" pathLength="1" cx="32" cy="32" rx="26" ry="9"/><ellipse class="dr" pathLength="1" cx="32" cy="32" rx="26" ry="9" transform="rotate(60 32 32)"/><ellipse class="dr" pathLength="1" cx="32" cy="32" rx="26" ry="9" transform="rotate(120 32 32)"/><circle cx="32" cy="32" r="3" fill="var(--gold)" stroke="none"/></g></svg>
+            <h3>Simulate nature with nature</h3>
+            <p>Richard Feynman argues that simulating quantum physics efficiently may require a computer that is itself quantum. The idea still anchors the field.</p>
+          </li>
+          <li class="entry">
+            <p class="entry__year">1985</p>
+            <svg class="entry__glyph" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1"><circle class="dr" pathLength="1" cx="32" cy="32" r="24"/><path class="dr" pathLength="1" d="M32 32 L47 17" stroke="var(--gold)"/><path class="dr" pathLength="1" d="M8 32h48 M32 8v48" opacity=".45"/></g></svg>
+            <h3>The universal quantum computer</h3>
+            <p>David Deutsch formalises a computer that runs on quantum principles and can, in principle, simulate any physical process.</p>
+          </li>
+          <li class="entry">
+            <p class="entry__year">1994</p>
+            <svg class="entry__glyph" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1"><path class="dr" pathLength="1" d="M32 14 L18 44 M32 14 L46 44"/></g><g fill="currentColor" font-size="11" text-anchor="middle"><text x="32" y="12">15</text><text x="16" y="56">3</text><text x="48" y="56" fill="var(--gold)">5</text></g></svg>
+            <h3>Factoring, upended</h3>
+            <p>Peter Shor shows that a quantum computer could factor large numbers efficiently, a direct challenge to the encryption that protects much of the internet.</p>
+          </li>
+          <li class="entry">
+            <p class="entry__year">1995</p>
+            <svg class="entry__glyph" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1"><circle cx="16" cy="16" r="4"/><circle cx="32" cy="16" r="4"/><circle cx="48" cy="16" r="4"/><circle cx="16" cy="32" r="4"/><circle cx="32" cy="32" r="4" stroke="var(--gold)"/><circle cx="48" cy="32" r="4"/><circle cx="16" cy="48" r="4"/><circle cx="32" cy="48" r="4"/><circle cx="48" cy="48" r="4"/><path class="dr" pathLength="1" d="M8 8h48v48H8z" opacity=".45"/></g></svg>
+            <h3>Errors can be corrected</h3>
+            <p>Shor's nine-qubit code proves that quantum information can be protected without being read. Andrew Steane's seven-qubit code follows a year later.</p>
+          </li>
+          <li class="entry">
+            <p class="entry__year">1996</p>
+            <svg class="entry__glyph" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1"><path class="dr" pathLength="1" d="M8 50 V40 M16 50 V40 M24 50 V40 M40 50 V40 M48 50 V40 M56 50 V40"/><path class="dr" pathLength="1" d="M32 50 V10" stroke="var(--gold)"/><path d="M4 50h56" opacity=".5"/></g></svg>
+            <h3>A faster search</h3>
+            <p>Lov Grover finds a quadratic speed-up for searching unstructured data: amplitude piles onto the right answer with every round of interference.</p>
+          </li>
+          <li class="entry">
+            <p class="entry__year">1997</p>
+            <svg class="entry__glyph" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1"><ellipse class="dr" pathLength="1" cx="32" cy="32" rx="27" ry="15"/><path class="dr" pathLength="1" d="M18 31 Q32 40 46 31 M22 34 Q32 27 42 34"/><ellipse class="dr" pathLength="1" cx="32" cy="38.5" rx="5.5" ry="8.5" stroke="var(--gold)"/></g></svg>
+            <h3>Protection by topology</h3>
+            <p>Alexei Kitaev proposes the toric code, which stores information in the shape of a lattice of qubits. Today's surface codes descend from it.</p>
+          </li>
+          <li class="entry">
+            <p class="entry__year">1999</p>
+            <svg class="entry__glyph" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1"><path class="dr" pathLength="1" d="M6 32h18 M40 32h18 M24 22v20 M40 22v20"/><path class="dr" pathLength="1" d="M27 29 L37 35 M37 29 L27 35" stroke="var(--gold)"/></g></svg>
+            <h3>Superconducting circuits enter</h3>
+            <p>Yasunobu Nakamura, Yuri Pashkin and Jaw-Shen Tsai demonstrate coherent control of a superconducting charge qubit, opening the road that processors like ours imagine following.</p>
+          </li>
+          <li class="entry">
+            <p class="entry__year">2012</p>
+            <svg class="entry__glyph" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1"><path class="dr" pathLength="1" d="M10 10h44v44H10z M10 25h44 M10 39h44 M25 10v44 M39 10v44" opacity=".8"/><circle cx="39" cy="25" r="3" fill="var(--gold)" stroke="none"/></g></svg>
+            <h3>A blueprint for scale</h3>
+            <p>A widely read review by Austin Fowler and colleagues lays out the surface code as a practical route to large, fault-tolerant machines.</p>
+          </li>
+          <li class="entry entry--fiction">
+            <p class="entry__year">Next</p>
+            <svg class="entry__glyph" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><use href="#qn-mark"/></svg>
+            <h3>The nest</h3>
+            <p>Fiction begins here. QuantumNest is an imagined studio, and this chapter is ours to invent: processors designed to be explained as clearly as they are engineered.</p>
+          </li>
+        </ol>
+      </div>
+      <p class="track__note">Dates refer to key publications. A selective, simplified history; the final entry is fictional.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PLATE V · APPLICATIONS ============ -->
+<section id="applications" class="plate plate--apps" aria-labelledby="apps-title">
+  <header class="plate__head plate__head--split">
+    <div>
+      <p class="plate__no"><span>Plate V</span> Applications, carefully</p>
+      <h2 id="apps-title" class="observe">Where quantum may matter, <em>and where it probably won't.</em></h2>
+    </div>
+    <p class="plate__intro">Quantum computers will not make everything faster. They promise large gains on a narrow set of problems and little or nothing elsewhere. This is our reading of each, kept deliberately plain.</p>
+  </header>
+  <ul class="index" id="apps">
+    <li class="index__row">
+      <h3 class="index__h"><button class="index__btn" type="button" aria-expanded="false" aria-controls="app-1">
+        <span class="index__no">01</span><span class="index__name">Chemistry &amp; materials</span><span class="index__verdict">A natural fit</span>
+        <span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><span class="visually-hidden">Editorial confidence: four of five.</span>
+        <span class="index__plus" aria-hidden="true"></span>
+      </button></h3>
+      <div class="index__body" id="app-1" hidden><div>
+        <p>Molecules are quantum systems, so describing them is exactly the job Feynman had in mind. Catalysts, batteries and drug candidates all depend on electron behaviour that classical computers can only approximate.</p>
+        <p class="index__aside">What it needs: error-corrected machines far larger than any that exist today.</p>
+      </div></div>
+    </li>
+    <li class="index__row">
+      <h3 class="index__h"><button class="index__btn" type="button" aria-expanded="false" aria-controls="app-2">
+        <span class="index__no">02</span><span class="index__name">Cryptography</span><span class="index__verdict">A risk to plan for</span>
+        <span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><span class="visually-hidden">Editorial confidence: four of five.</span>
+        <span class="index__plus" aria-hidden="true"></span>
+      </button></h3>
+      <div class="index__body" id="app-2" hidden><div>
+        <p>Shor's algorithm could one day break RSA and elliptic-curve encryption. The sensible response is already under way: migrating to post-quantum cryptography, which runs on ordinary computers. NIST published its first post-quantum standards in 2024.</p>
+        <p class="index__aside">What it needs: nothing from us. Upgrading your encryption does not require a quantum computer.</p>
+      </div></div>
+    </li>
+    <li class="index__row">
+      <h3 class="index__h"><button class="index__btn" type="button" aria-expanded="false" aria-controls="app-3">
+        <span class="index__no">03</span><span class="index__name">Search</span><span class="index__verdict">Real, but modest</span>
+        <span class="dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span><span class="visually-hidden">Editorial confidence: two of five.</span>
+        <span class="index__plus" aria-hidden="true"></span>
+      </button></h3>
+      <div class="index__body" id="app-3" hidden><div>
+        <p>Grover's algorithm offers a quadratic speed-up: a million guesses become roughly a thousand. It is genuine, but the overheads of error correction can easily eat the gain on practical problem sizes.</p>
+        <p class="index__aside">What it needs: very fast, very reliable logical qubits.</p>
+      </div></div>
+    </li>
+    <li class="index__row">
+      <h3 class="index__h"><button class="index__btn" type="button" aria-expanded="false" aria-controls="app-4">
+        <span class="index__no">04</span><span class="index__name">Optimisation</span><span class="index__verdict">Often promised</span>
+        <span class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i></span><span class="visually-hidden">Editorial confidence: one of five.</span>
+        <span class="index__plus" aria-hidden="true"></span>
+      </button></h3>
+      <div class="index__body" id="app-4" hidden><div>
+        <p>Logistics, scheduling and portfolio problems appear in many quantum pitches. For most of them no advantage has been demonstrated, and classical methods keep improving. We would rather say so than sell it.</p>
+        <p class="index__aside">What it needs: evidence, problem by problem.</p>
+      </div></div>
+    </li>
+    <li class="index__row">
+      <h3 class="index__h"><button class="index__btn" type="button" aria-expanded="false" aria-controls="app-5">
+        <span class="index__no">05</span><span class="index__name">Machine learning</span><span class="index__verdict">An open question</span>
+        <span class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i></span><span class="visually-hidden">Editorial confidence: one of five.</span>
+        <span class="index__plus" aria-hidden="true"></span>
+      </button></h3>
+      <div class="index__body" id="app-5" hidden><div>
+        <p>There are elegant theoretical results, and many caveats. Loading large datasets into a quantum state is itself expensive, so we treat claims of speed-ups for everyday AI workloads with caution.</p>
+        <p class="index__aside">What it needs: algorithms that survive contact with real data.</p>
+      </div></div>
+    </li>
+  </ul>
+  <p class="index__note">Dots show our editorial confidence. This is a point of view, not a forecast.</p>
+</section>
+
+<!-- ============ PLATE VI · VIEWING ============ -->
+<section id="viewing" class="plate plate--viewing" aria-labelledby="viewing-title">
+  <div class="viewing">
+    <div class="viewing__intro">
+      <p class="plate__no"><span>Plate VI</span> By appointment</p>
+      <h2 id="viewing-title" class="observe">See the sculpture <em>in the dark.</em></h2>
+      <p class="plate__intro">The original sculpture is shown by appointment in our atelier: a dark room, one turning crystal and a researcher who will answer anything you ask. Briefings for research teams and press visits run on the same evenings.</p>
+      <dl class="viewing__facts">
+        <div><dt>Duration</dt><dd>Forty-five minutes</dd></div>
+        <div><dt>Group size</dt><dd>Up to six guests</dd></div>
+        <div><dt>Prerequisites</dt><dd>Curiosity. No physics required.</dd></div>
+      </dl>
+      <svg class="viewing__plate" viewBox="0 0 320 200" aria-hidden="true" focusable="false">
+        <g fill="none" stroke="#C8A96A" stroke-width=".8">
+          <rect class="dr" pathLength="1" x="6" y="6" width="308" height="188"/>
+          <rect class="dr" pathLength="1" x="14" y="14" width="292" height="172" opacity=".45"/>
+        </g>
+        <g fill="none" stroke="#EAF2FF" stroke-width=".9" stroke-linejoin="round">
+          <path class="dr" pathLength="1" d="M160 40 L184 96 L160 150 L136 96 Z"/>
+          <path class="dr" pathLength="1" d="M136 96 L160 108 L184 96 M160 40 V108 M160 108 V150" opacity=".55"/>
+          <ellipse class="dr" pathLength="1" cx="160" cy="166" rx="40" ry="6" stroke="#C8A96A"/>
+        </g>
+        <g fill="#9FB8FF" font-size="8" letter-spacing="1.5"><text x="24" y="176">CAT. QN–001</text><text x="230" y="176">ON VIEW</text></g>
+      </svg>
+    </div>
+
+    <form class="form" id="viewing-form" novalidate aria-describedby="form-demo-note">
+      <p class="form__demo" id="form-demo-note">Portfolio demo: nothing you enter here is sent or stored.</p>
+      <div class="field">
+        <label for="f-name">Full name</label>
+        <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="e-name">
+        <p class="field__err" id="e-name" aria-live="polite"></p>
+      </div>
+      <div class="field">
+        <label for="f-email">Email</label>
+        <input id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="e-email">
+        <p class="field__err" id="e-email" aria-live="polite"></p>
+      </div>
+      <div class="field">
+        <label for="f-org">Organisation <span class="field__opt">optional</span></label>
+        <input id="f-org" name="org" type="text" autocomplete="organization">
+      </div>
+      <fieldset class="field field--choice" aria-describedby="e-visit">
+        <legend>Kind of visit</legend>
+        <label class="choice"><input type="radio" name="visit" value="Private viewing"><span>Private viewing</span></label>
+        <label class="choice"><input type="radio" name="visit" value="Research briefing"><span>Research briefing</span></label>
+        <label class="choice"><input type="radio" name="visit" value="Press visit"><span>Press visit</span></label>
+        <p class="field__err" id="e-visit" aria-live="polite"></p>
+      </fieldset>
+      <div class="field">
+        <label for="f-month">Preferred month</label>
+        <select id="f-month" name="month" required aria-describedby="e-month">
+          <option value="">Choose a month</option>
+        </select>
+        <p class="field__err" id="e-month" aria-live="polite"></p>
+      </div>
+      <div class="field field--wide">
+        <label for="f-notes">A question for the researcher <span class="field__opt">optional</span></label>
+        <textarea id="f-notes" name="notes" rows="3" maxlength="600" aria-describedby="c-notes"></textarea>
+        <p class="field__count" id="c-notes">0 / 600</p>
+      </div>
+      <div class="form__foot">
+        <button class="btn" type="submit">Request a viewing <svg aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></button>
+      </div>
+      <div class="form__done" id="form-done" tabindex="-1" hidden>
+        <svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><use href="#qn-mark"/></svg>
+        <div>
+          <p class="form__done-title" id="form-done-title">Request noted.</p>
+          <p>This is a portfolio demo: nothing was sent and no viewing was booked. In a real atelier, a researcher would now write to you.</p>
+          <button class="link-quiet" type="button" id="form-reset">Start another request</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer" id="footer">
+  <div class="footer__plinth" aria-hidden="true"></div>
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <a class="brand brand--footer" href="#top" aria-label="QuantumNest, back to the top">
+        <svg class="brand__mark" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><use href="#qn-mark"/></svg>
+        <span class="brand__word">Quantum<span>Nest</span></span>
+      </a>
+      <p class="footer__line">Beyond the <em>possible.</em></p>
+    </div>
+    <nav class="footer__nav" aria-label="Footer">
+      <p class="footer__label">Plates</p>
+      <ol>
+        <li><a href="#plate-i">I · Sculpture</a></li>
+        <li><a href="#instrument">II · Interference bench</a></li>
+        <li><a href="#nest">III · The nest</a></li>
+        <li><a href="#history">IV · History</a></li>
+        <li><a href="#applications">V · Applications</a></li>
+        <li><a href="#viewing">VI · Request a viewing</a></li>
+      </ol>
+    </nav>
+    <div class="credit">
+      <p class="footer__label">Colophon</p>
+      <p class="credit__by">Designed &amp; built by <a href="https://www.linkedin.com/in/saadbashirmarketing/" target="_blank" rel="noopener" aria-label="Saad Bashir on LinkedIn (opens in a new tab)">Saad Bashir</a></p>
+      <p class="credit__note">Fictional concept brand — portfolio project.</p>
+      <a class="credit__more" href="https://saadbashirportfolio.vercel.app/websites.html">More work <svg aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+    </div>
+  </div>
+  <p class="footer__fine">QuantumNest is fictional. Every visualisation on this site is illustrative, not a quantum simulation. Set in Literata and Azeret Mono.</p>
+</footer>
+</body>
+</html>
