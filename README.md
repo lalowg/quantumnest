@@ -108,7 +108,7 @@ Then open the printed localhost URL. ES modules need a server; opening `index.ht
 - The sculpture is illustrative choreography, not a physical model. The Bloch sphere, amplitudes and lattice are simplified for clarity (the surface-code patch uses 16 measure crystals rather than the full 24).
 - Refrigerator temperatures are typical orders of magnitude for a generic dilution refrigerator, not a product specification.
 - The pinned history track is desktop-only. Phones and tablets get a swipeable track with buttons.
-- `og.png` is rendered separately by the lead.
+- `og.jpg` is rendered separately by the lead.
 
 ---
 
